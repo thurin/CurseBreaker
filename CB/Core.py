@@ -177,29 +177,37 @@ class Core:
             return TukuiAddon(url, True)
         elif url.startswith('https://github.com/'):
             return GitHubAddon(url, self.clientType)
+        elif url.startswith('gl:'):
+            gl_path = url[3:].split('/')
+            return GitLabAddon(gl_path[0], gl_path[1])
         elif url.lower() == 'elvui':
             if self.clientType == 'wow_retail':
-                return GitLabAddon('ElvUI', '60', 'elvui/elvui', 'master')
+                return GitLabAddon('60', 'master')
             else:
-                return GitLabAddon('ElvUI', '492', 'elvui/elvui-classic', 'master')
+                return GitLabAddon('492', 'master')
         elif url.lower() == 'elvui:dev':
             if self.clientType == 'wow_retail':
-                return GitLabAddon('ElvUI', '60', 'elvui/elvui', 'development')
+                return GitLabAddon('60', 'development')
             else:
-                return GitLabAddon('ElvUI', '492', 'elvui/elvui-classic', 'development')
+                return GitLabAddon('492', 'development')
         # TODO Remove after 9.0 release
         elif url.lower() == 'elvui:beta':
-            return GitLabAddon('ElvUI', '60', 'elvui/elvui', 'beta')
+            return GitLabAddon('60', 'beta')
         elif url.lower() == 'tukui':
             if self.clientType == 'wow_retail':
-                return GitLabAddon('Tukui', '77', 'Tukz/Tukui', 'master')
+                return GitLabAddon('77', 'master')
             else:
-                return GitLabAddon('Tukui', '77', 'Tukz/Tukui', 'Classic')
+                return GitLabAddon('77', 'Classic')
         elif url.lower() == 'sle:dev':
             if self.clientType == 'wow_retail':
-                return GitLabAddon('ElvUI Shadow & Light', '45', 'shadow-and-light/shadow-and-light', 'dev')
+                return GitLabAddon('45', 'dev')
             else:
                 raise RuntimeError('Incorrect client version.')
+        elif url.lower() == 'benikui':
+            if self.clientType == 'wow_retail':
+                return GitLabAddon('95', 'master')
+            else:
+                return GitLabAddon('559', 'master')
         else:
             raise NotImplementedError('Provided URL is not supported.')
 
@@ -210,6 +218,7 @@ class Core:
             return 'WoWI'
         elif url.startswith('https://www.tukui.org/addons.php?id=') or \
                 url.startswith('https://www.tukui.org/classic-addons.php?id=') or \
+                url.startswith('gl:') or \
                 url.lower().startswith('elvui') or \
                 url.lower().startswith('tukui') or \
                 url.lower() == 'sle:dev':
