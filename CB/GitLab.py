@@ -34,18 +34,14 @@ class GitLabAddon:
         for file in self.archive.namelist():
             file_info = self.archive.getinfo(file)
             if file_info.is_dir() and file_info.filename.count('/') == 2 and '.gitlab' not in file_info.filename:
-                print(file_info.filename.split('/')[1])
                 self.directories.append(file_info.filename.split('/')[1])
         self.directories = list(filter(None, set(self.directories)))
         if len(self.directories) == 0:
             raise RuntimeError(f'{self.name}.\nProject package is corrupted or incorrectly packaged.')
 
     def install(self, path):
-        print(path)
-
         self.archive.extractall(path)
         for directory in self.directories:
-            print(directory)
             shutil.rmtree(path / directory, ignore_errors=True)
             # FIXME - Python bug #32689
             shutil.move(str(path / f'{self.shortPath}-{self.branch}' / directory), str(path))
