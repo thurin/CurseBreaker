@@ -21,7 +21,7 @@ class GitLabAddon:
             self.branch = self.branch.json()
         self.name = self.project['name']
         self.pathWithNamespace = self.project['path_with_namespace']
-        self.shortPath = self.pathWithNamespace.split('/')[1]
+        self.shortPath = self.project['path']
         self.downloadUrl = f'https://git.tukui.org/{self.pathWithNamespace}/-/archive/{branch}/{self.shortPath}-{branch}.zip'
         self.currentVersion = self.branch['commit']['short_id']
         self.branch = branch
