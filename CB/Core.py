@@ -203,11 +203,6 @@ class Core:
                 return GitLabAddon('45', 'dev')
             else:
                 raise RuntimeError('Incorrect client version.')
-        elif url.lower() == 'benikui':
-            if self.clientType == 'wow_retail':
-                return GitLabAddon('95', 'master')
-            else:
-                return GitLabAddon('559', 'master')
         else:
             raise NotImplementedError('Provided URL is not supported.')
 
