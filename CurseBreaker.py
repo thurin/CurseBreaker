@@ -716,7 +716,8 @@ class TUI:
                            'php?id=\[addon_id] [bold white]|[/bold white] tu:\[addon_id]\n\thttps://www.tukui.org/class'
                            'ic-addons.php?id=\[addon_id] [bold white]|[/bold white] tuc:\[addon_id]\n\thttps://github.c'
                            'om/\[username]/\[repository_name] [bold white]|[/bold white] gh:\[username]/\[repository_na'
-                           'me]\n\tElvUI [bold white]|[/bold white] ElvUI:Dev\n\tTukui\n\tSLE:Dev', highlight=False)
+                           'me]\n\tElvUI [bold white]|[/bold white] ElvUI:Dev [bold white]|[/bold white] gl:\[project_i'
+                           'd]/\[branch]\n\tTukui\n\tSLE:Dev\n\t', highlight=False)
 
     def c_exit(self, _):
         sys.exit(0)
